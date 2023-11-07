@@ -2,7 +2,7 @@
     displayDensity="cosy" rowSelection="single"
     [moving]="true" columnSelection="multiple" [allowFiltering]="true"
     filterMode="excelStyleFilter" class="grid" [selectedRows]="selectedSymbols"
-    (rowSelectionChanging)="handleRowSelection($event)">
+    (rowSelectionChanging)="handleRowSelection($event.newSelection[0])">
   <igx-grid-toolbar>
     <igx-grid-toolbar-actions>
       <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>

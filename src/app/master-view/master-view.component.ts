@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Stock } from '../models/stocks/stock';
 import { StocksService } from '../services/stocks.service';
-import { IRowSelectionEventArgs, IgxGridComponent } from 'igniteui-angular';
-import { Context } from '@finos/fdc3';
+import { IgxGridComponent } from 'igniteui-angular';
+import { fdc3Ready } from '@finos/fdc3';
 
 
 @Component({
@@ -28,17 +28,22 @@ export class MasterViewComponent implements OnInit, OnDestroy {
     this.stocksService.getStockList().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         this.stocksStock = data;
+        const selectedStock = this.stocksStock.find(x => x.stock_symbol === this.selectedSymbols[0]);
+        if (selectedStock) {
+          this.handleRowSelection(selectedStock);
+        }
       },
       error: () => this.stocksStock = []
     });
   }
 
-  public handleRowSelection(event: IRowSelectionEventArgs) {
+  public handleRowSelection(stock: Stock) {
     // broadcast fdc3, this will throw and error if the fdc3 is not installed
-    console.log(event.newSelection[0].stock_symbol);
-    const _stock = this.stockToFdc3Context(event.newSelection[0].stock_symbol, event.newSelection[0].stock_name);
+    const _stock = this.stockToFdc3Context(stock.stock_symbol, stock.stock_name);
     if (_stock !== undefined) {
-      window.fdc3.broadcast(_stock);
+      fdc3Ready().then(() => {
+        window.fdc3.broadcast(_stock);
+      });
     }
   }
 
