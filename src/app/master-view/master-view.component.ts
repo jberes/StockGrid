@@ -15,36 +15,28 @@ export class MasterViewComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   public stocksStock: Stock[] = [];
   public columnVisible: boolean = false;
-  selectedRowsCount: number = 0;
-  selectedRowIndex: any;
 
   @ViewChild('finGrid', { static: true })
   public finGrid!: IgxGridComponent;
-  
+
   constructor(
     private stocksService: StocksService,
   ) { }
 
   ngOnInit() {
     this.stocksService.getStockList().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (data) => this.stocksStock = data,
-      error: (_err: any) => this.stocksStock = []
+      next: (data) => {
+        this.stocksStock = data;
+        // I thought this would select the 1st row
+        this.finGrid.selectRows([1], true);
+      },
+      error: () => this.stocksStock = []
     });
   }
 
-  ngAfterViewInit() {
-    this.finGrid.selectRows([1], true);
-  }
-
   public handleRowSelection(event: IRowSelectionEventArgs) {
-    console.log(event.newSelection[0].stock_symbol);
-    this.selectedRowsCount = event.newSelection.length;
-    this.selectedRowIndex = event.newSelection[0];
-    console.log(`=> 'rowSelectionChanging' with value: ` + JSON.stringify(event.newSelection));
-
-    // broadcast fdc3
+    // broadcast fdc3, this will throw and error if the fdc3 is not installed
     const _stock = this.stockToFdc3Context(event.newSelection[0].stock_symbol, event.newSelection[0].stock_name);
-    console.log("this is the stock -->> " + _stock);
     if (_stock !== undefined) {
       window.fdc3.broadcast(_stock);
     }
