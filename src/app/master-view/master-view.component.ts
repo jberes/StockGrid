@@ -15,6 +15,7 @@ export class MasterViewComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   public stocksStock: Stock[] = [];
   public columnVisible: boolean = false;
+  public selectedSymbols = ['UNH'];
 
   @ViewChild('finGrid', { static: true })
   public finGrid!: IgxGridComponent;
@@ -27,8 +28,6 @@ export class MasterViewComponent implements OnInit, OnDestroy {
     this.stocksService.getStockList().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         this.stocksStock = data;
-        // I thought this would select the 1st row
-        this.finGrid.selectRows([1], true);
       },
       error: () => this.stocksStock = []
     });
