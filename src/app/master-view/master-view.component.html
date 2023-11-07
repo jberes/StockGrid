@@ -1,0 +1,31 @@
+<igx-grid [data]="stocksStock" primaryKey="id" displayDensity="cosy" rowSelection="single" [moving]="true" columnSelection="multiple" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+  <igx-grid-toolbar>
+    <igx-grid-toolbar-actions>
+      <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>
+      <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
+      <igx-grid-toolbar-exporter></igx-grid-toolbar-exporter>
+    </igx-grid-toolbar-actions>
+    <igx-grid-toolbar-title>My Stocks</igx-grid-toolbar-title>
+  </igx-grid-toolbar>
+  <igx-column field="id" dataType="string" header="id" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="company_name" dataType="string" header="Company Name" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="stock_symbol" dataType="string" header="Ticker" [groupable]="true" [sortable]="true" [resizable]="true"></igx-column>
+  <igx-column field="stock_name" dataType="string" header="Stock Name" [groupable]="true" [sortable]="true" [resizable]="true"></igx-column>
+  <igx-column field="stock_market_cap" dataType="string" header="Market Cap" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true" *ngIf="columnVisible"></igx-column>
+  <igx-column field="stock_market" dataType="string" header="Market" [groupable]="true" [sortable]="true" [resizable]="true"></igx-column>
+  <igx-column field="stock_sector" dataType="string" header="Sector" [groupable]="true" [sortable]="true" [resizable]="true"></igx-column>
+  <igx-column field="country" dataType="string" header="Country" [groupable]="true" [sortable]="true" [resizable]="true"></igx-column>
+  <igx-column field="longitude" dataType="number" header="longitude" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="latitude" dataType="number" header="latitude" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="earnings" dataType="number" header="earnings" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="expenses" dataType="number" header="expenses" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="earnings_date" dataType="string" header="earnings_date" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="previous_close" dataType="number" header="previous_close" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="day_range" dataType="number" header="day_range" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="year_range" dataType="number" header="year_range" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="avg_volume" dataType="number" header="avg_volume" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="pe_ratio" dataType="number" header="pe_ratio" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="dividend_yield" dataType="number" header="dividend_yield" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="img_url" dataType="string" header="img_url" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+  <igx-column field="stock_industry" dataType="string" header="stock_industry" [hidden]="true" [groupable]="true" [sortable]="true" [resizable]="true" [hasSummary]="true"></igx-column>
+</igx-grid>
