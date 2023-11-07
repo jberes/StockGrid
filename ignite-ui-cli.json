@@ -1,7 +1,7 @@
 {
   "version": "16.0.1206",
   "project": {
-    "defaultPort": 4200,
+    "defaultPort": 54485,
     "framework": "angular",
     "projectType": "igx-ts",
     "projectTemplate": "base",
