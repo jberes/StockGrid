@@ -1,7 +1,7 @@
 <igx-grid [data]="stocksStock" primaryKey="stock_symbol" #finGrid
     displayDensity="cosy" rowSelection="single"
     [moving]="true" columnSelection="multiple" [allowFiltering]="true"
-    filterMode="excelStyleFilter" class="grid" [selectedRows]="selectedSymbols"
+    filterMode="excelStyleFilter" class="grid" [selectedRows]="initialSymbol"
     (rowSelectionChanging)="handleRowSelection($event.newSelection[0])">
   <igx-grid-toolbar>
     <igx-grid-toolbar-actions>

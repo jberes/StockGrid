@@ -15,7 +15,7 @@ export class MasterViewComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   public stocksStock: Stock[] = [];
   public columnVisible: boolean = false;
-  public selectedSymbols = ['UNH'];
+  public initialSymbol: string [] = [];
 
   @ViewChild('finGrid', { static: true })
   public finGrid!: IgxGridComponent;
@@ -28,7 +28,8 @@ export class MasterViewComponent implements OnInit, OnDestroy {
     this.stocksService.getStockList().pipe(takeUntil(this.destroy$)).subscribe({
       next: (data) => {
         this.stocksStock = data;
-        const selectedStock = this.stocksStock.find(x => x.stock_symbol === this.selectedSymbols[0]);
+        this.initialSymbol = [this.stocksStock[0].stock_symbol];
+        const selectedStock = this.stocksStock.find(x => x.stock_symbol === this.initialSymbol[0]);
         if (selectedStock) {
           this.handleRowSelection(selectedStock);
         }
