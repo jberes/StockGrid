@@ -35,6 +35,7 @@ export class MasterViewComponent implements OnInit, OnDestroy {
 
   public handleRowSelection(event: IRowSelectionEventArgs) {
     // broadcast fdc3, this will throw and error if the fdc3 is not installed
+    console.log(event.newSelection[0].stock_symbol);
     const _stock = this.stockToFdc3Context(event.newSelection[0].stock_symbol, event.newSelection[0].stock_name);
     if (_stock !== undefined) {
       window.fdc3.broadcast(_stock);
