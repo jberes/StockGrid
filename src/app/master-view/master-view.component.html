@@ -1,4 +1,8 @@
-<igx-grid [data]="stocksStock" primaryKey="id" displayDensity="cosy" rowSelection="single" [moving]="true" columnSelection="multiple" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+<igx-grid [data]="stocksStock" primaryKey="id" 
+    displayDensity="cosy" rowSelection="single" 
+    [moving]="true" columnSelection="multiple" [allowFiltering]="true" 
+    filterMode="excelStyleFilter" class="grid"
+    (rowSelectionChanging)="handleRowSelection($event)">
   <igx-grid-toolbar>
     <igx-grid-toolbar-actions>
       <igx-grid-toolbar-pinning></igx-grid-toolbar-pinning>
