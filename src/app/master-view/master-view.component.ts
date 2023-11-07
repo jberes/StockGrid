@@ -1,8 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Stock } from '../models/stocks/stock';
 import { StocksService } from '../services/stocks.service';
-import { IRowSelectionEventArgs } from 'igniteui-angular';
+import { IRowSelectionEventArgs, IgxGridComponent } from 'igniteui-angular';
 import { Context } from '@finos/fdc3';
 
 
@@ -18,6 +18,9 @@ export class MasterViewComponent implements OnInit, OnDestroy {
   selectedRowsCount: number = 0;
   selectedRowIndex: any;
 
+  @ViewChild('finGrid', { static: true })
+  public finGrid!: IgxGridComponent;
+  
   constructor(
     private stocksService: StocksService,
   ) { }
@@ -27,6 +30,11 @@ export class MasterViewComponent implements OnInit, OnDestroy {
       next: (data) => this.stocksStock = data,
       error: (_err: any) => this.stocksStock = []
     });
+  }
+
+  ngAfterViewInit() {
+    // Any additional initializations that require the grid to be fully initialized
+    this.finGrid.selectRows([1], true);
   }
 
   public handleRowSelection(event: IRowSelectionEventArgs) {
