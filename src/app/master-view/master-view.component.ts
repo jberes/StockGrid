@@ -33,7 +33,6 @@ export class MasterViewComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    // Any additional initializations that require the grid to be fully initialized
     this.finGrid.selectRows([1], true);
   }
 
