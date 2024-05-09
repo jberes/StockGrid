@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Stock } from '../models/stocks/stock';
 
-const API_ENDPOINT = 'https://reveal-api.azurewebsites.net';
+const API_ENDPOINT = 'https://fintechcloud.azurewebsites.net';
 
 @Injectable({
   providedIn: 'root'

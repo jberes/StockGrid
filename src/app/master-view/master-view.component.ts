@@ -44,6 +44,7 @@ export class MasterViewComponent implements OnInit, OnDestroy {
     if (_stock !== undefined) {
       fdc3Ready().then(() => {
         window.fdc3.broadcast(_stock);
+        //window.fdc3.raiseIntent('ViewChart', _stock, app.apps[0].name);
       });
     }
   }
